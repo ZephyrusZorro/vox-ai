@@ -1,55 +1,39 @@
-import requests, json, time, sys
+import time, requests
 
-HEADERS = {"Authorization": "Bearer rnd_uOZChdOwSBBfyNjBK5oHk6NTqGIK", "Accept": "application/json"}
-DEPLOY_ID = "dep-d7qprsa8qa3s73d1lc1g"
-SERVICE_ID = "srv-d7m7tnho3t8c73e19q30"
+API_KEY = 'rnd_uOZChdOwSBBfyNjBK5oHk6NTqGIK'
+SERVICE_ID = 'srv-d7m7tnho3t8c73e19q30'
+BASE = 'https://api.render.com/v1'
+HEADERS = {'Authorization': f'Bearer {API_KEY}', 'Accept': 'application/json'}
 
-print(f"Monitoring deploy {DEPLOY_ID}...")
-start = time.time()
-last_status = ""
+print('Monitoring deploy...')
+for i in range(40):
+    r = requests.get(f'{BASE}/services/{SERVICE_ID}/deploys', headers=HEADERS, params={'limit': 1})
+    if r.ok:
+        d = r.json()[0]
+        status = d.get('status', '?')
+        print(f'  [{i*10}s] {status}')
+        if status == 'live':
+            print('Deploy is LIVE!')
+            break
+        if status in ('build_failed', 'update_failed', 'canceled'):
+            print(f'Deploy FAILED: {status}')
+            break
+    time.sleep(10)
+else:
+    print('Timeout waiting for deploy')
 
-while time.time() - start < 600:  # 10 min max
-    try:
-        r = requests.get(
-            f"https://api.render.com/v1/services/{SERVICE_ID}/deploys/{DEPLOY_ID}",
-            headers=HEADERS, timeout=30,
-        )
-        if r.ok:
-            data = r.json()
-            status = data.get("status", "?")
-            if status != last_status:
-                elapsed = int(time.time() - start)
-                print(f"  [{elapsed}s] Status: {status}")
-                last_status = status
-            
-            if status == "live":
-                print("  DEPLOY IS LIVE!")
-                # Quick health check
-                time.sleep(5)
-                try:
-                    hr = requests.get("https://lifodial.onrender.com/health", timeout=60)
-                    print(f"  Health: {hr.status_code} -> {hr.text[:200]}")
-                except Exception as e:
-                    print(f"  Health check: {e}")
-                sys.exit(0)
-            elif status in ("build_failed", "update_failed", "canceled"):
-                print(f"  DEPLOY FAILED: {status}")
-                # Get logs
-                try:
-                    lr = requests.get(
-                        f"https://api.render.com/v1/services/{SERVICE_ID}/deploys/{DEPLOY_ID}/logs",
-                        headers=HEADERS, timeout=30,
-                    )
-                    if lr.ok:
-                        for line in lr.json()[-20:]:
-                            print(f"    {line.get('message', '')}")
-                except:
-                    pass
-                sys.exit(1)
-    except Exception as e:
-        print(f"  Poll error: {e}")
+# Quick verification after deploy
+if status == 'live':
+    print('\nVerifying...')
+    r = requests.get('https://lifodial.onrender.com/health', timeout=10)
+    print(f'  Health: {r.status_code}')
     
-    time.sleep(15)
-
-print("  TIMED OUT after 10 minutes")
-sys.exit(1)
+    # Check embed config includes first_message_mode
+    r = requests.get('https://lifodial.onrender.com/embed/agent-002/config', timeout=10)
+    if r.ok:
+        cfg = r.json()
+        print(f'  first_message_mode: {cfg.get("first_message_mode", "MISSING")}')
+        print(f'  first_message present: {"first_message" in cfg}')
+        print(f'  agent_name: {cfg.get("agent_name", "MISSING")}')
+    else:
+        print(f'  Config: {r.status_code}')
