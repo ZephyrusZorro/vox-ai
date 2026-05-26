@@ -87,5 +87,8 @@ class Settings(BaseSettings):
     vite_api_url: str = "http://localhost:8001"
     frontend_url: str = "http://localhost:5173"
 
+    # ── Security ───────────────────────────────────────────────────────────
+    superadmin_token: str = "lifodial2026"
+
 
 settings = Settings()

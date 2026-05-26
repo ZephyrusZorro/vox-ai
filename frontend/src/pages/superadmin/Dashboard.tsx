@@ -57,7 +57,10 @@ export default function SADashboard() {
 
     async function fetchClinics() {
       try {
-        const res = await fetch(`${API_URL}/admin/clinics`);
+        const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+        const res = await fetch(`${API_URL}/admin/clinics`, {
+          headers: { 'X-SuperAdmin-Token': token }
+        });
         if (!res.ok) throw new Error();
         const data = await res.json();
         if (!cancelled) {

@@ -4,6 +4,11 @@
 
 import os
 import logging
+from dotenv import load_dotenv
+
+# Load environment variables explicitly
+load_dotenv()
+load_dotenv("backend/.env")
 from sqlalchemy.ext.asyncio import (
     create_async_engine,
     AsyncSession,

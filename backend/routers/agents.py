@@ -325,7 +325,7 @@ class ClinicLoginPayload(BaseModel):
 async def clinic_login(payload: ClinicLoginPayload) -> dict:
     """
     Clinic admin login. Looks up tenant by email.
-    Returns tenant_id + clinic_name so the frontend knows who is logged in.
+    Enforces password matching against admin_password column.
     """
     try:
         async with async_session() as session:
@@ -336,7 +336,11 @@ async def clinic_login(payload: ClinicLoginPayload) -> dict:
             )
             tenant = result.scalar_one_or_none()
             if not tenant:
-                raise HTTPException(status_code=401, detail="No clinic found for that email")
+                raise HTTPException(status_code=401, detail="Invalid email or password")
+            
+            if not tenant.admin_password or tenant.admin_password != payload.password.strip():
+                raise HTTPException(status_code=401, detail="Invalid email or password")
+
             return {
                 "tenant_id": tenant.id,
                 "clinic_name": tenant.clinic_name,

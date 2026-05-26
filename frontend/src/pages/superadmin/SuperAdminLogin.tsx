@@ -10,6 +10,7 @@ export default function SuperAdminLogin() {
     e.preventDefault();
     if (email === 'admin@lifodial.com' && password === 'lifodial2026') {
       localStorage.setItem('lifodial-superadmin', 'true');
+      localStorage.setItem('lifodial-superadmin-token', password);
       navigate('/superadmin/dashboard');
     } else {
       alert('Invalid credentials');

@@ -19,6 +19,7 @@ DEMO_CLINICS = [
         "location": "Mumbai, Maharashtra",
         "admin_name": "Dr. Rajesh Sharma",
         "admin_email": "admin@apollo.lifodial.com",
+        "admin_password": "changeme123",
         "ai_number": "+91 90001 23456",
         "credits": 500.0,
         "agent": {
@@ -51,6 +52,7 @@ DEMO_CLINICS = [
         "location": "Kochi, Kerala",
         "admin_name": "Dr. Meena Thomas",
         "admin_email": "admin@aster.lifodial.com",
+        "admin_password": "changeme123",
         "ai_number": "+91 90001 34567",
         "credits": 750.0,
         "agent": {
@@ -82,6 +84,7 @@ DEMO_CLINICS = [
         "location": "New Delhi",
         "admin_name": "Dr. Amit Gupta",
         "admin_email": "admin@max.lifodial.com",
+        "admin_password": "changeme123",
         "ai_number": "+91 90001 45678",
         "credits": 1000.0,
         "agent": {
@@ -114,6 +117,7 @@ DEMO_CLINICS = [
         "location": "Bangalore, Karnataka",
         "admin_name": "Dr. Kiran Rao",
         "admin_email": "admin@manipal.lifodial.com",
+        "admin_password": "changeme123",
         "ai_number": "+91 90001 56789",
         "credits": 250.0,
         "agent": {
@@ -145,6 +149,7 @@ DEMO_CLINICS = [
         "location": "Dubai, UAE",
         "admin_name": "Dr. Ahmed Al Rashidi",
         "admin_email": "admin@alzahra.lifodial.com",
+        "admin_password": "changeme123",
         "ai_number": "+971 50001 12345",
         "credits": 2000.0,
         "agent": {
@@ -187,7 +192,8 @@ async def seed():
             tenant_obj = existing.scalar_one_or_none()
 
             if tenant_obj:
-                print(f"⏭️  {clinic_data['clinic_name']} already exists, skipping")
+                print(f"[OK] {clinic_data['clinic_name']} already exists, ensuring password is set")
+                tenant_obj.admin_password = clinic_data.get("admin_password", "changeme123")
             else:
                 # Create Tenant
                 tenant_obj = Tenant(
@@ -197,6 +203,7 @@ async def seed():
                     location=clinic_data.get("location"),
                     admin_name=clinic_data.get("admin_name"),
                     admin_email=clinic_data.get("admin_email"),
+                    admin_password=clinic_data.get("admin_password", "changeme123"),
                     ai_number=clinic_data["ai_number"],
                     status="active",
                 )
@@ -245,7 +252,7 @@ async def seed():
                     db.add(agent)
 
                 await db.flush()  # flush so tenant id is visible for credits
-                print(f"✅ Created: {clinic_data['clinic_name']}")
+                print(f"[OK] Created: {clinic_data['clinic_name']}")
 
             # Seed/top-up credits (always ensure a balance exists)
             try:
@@ -258,15 +265,15 @@ async def seed():
                         description="Initial demo credits",
                         performed_by="system_seed",
                     )
-                    print(f"   💰 Credited ₹{clinic_data.get('credits', 500.0)} to {clinic_data['clinic_name']}")
+                    print(f"   [CREDIT] Credited {clinic_data.get('credits', 500.0)} to {clinic_data['clinic_name']}")
             except Exception as e:
-                print(f"   ⚠️  Credits error for {clinic_data['clinic_name']}: {e}")
+                print(f"   [WARN] Credits error for {clinic_data['clinic_name']}: {e}")
 
         await db.commit()
-        print("\n✅ Seed complete! Database ready.")
+        print("\n[OK] Seed complete! Database ready.")
         print("\nDemo clinic logins:")
         for c in DEMO_CLINICS:
-            print(f"  {c['admin_email']} → {c['clinic_name']}")
+            print(f"  {c['admin_email']} -> {c['clinic_name']}")
 
 
 if __name__ == "__main__":

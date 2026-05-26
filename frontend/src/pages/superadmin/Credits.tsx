@@ -59,7 +59,10 @@ export default function Credits() {
   // Always fetch the clinic list so dropdowns have options even before credits exist
   const loadAllClinics = async () => {
     try {
-      const res = await fetch(`${API_URL}/admin/clinics`);
+      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+      const res = await fetch(`${API_URL}/admin/clinics`, {
+        headers: { 'X-SuperAdmin-Token': token }
+      });
       if (res.ok) {
         const data = await res.json();
         const clinicList = Array.isArray(data) ? data : (data.clinics || []);
@@ -76,7 +79,10 @@ export default function Credits() {
   const loadBalances = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${API_URL}/credits`);
+      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+      const res = await fetch(`${API_URL}/credits`, {
+        headers: { 'X-SuperAdmin-Token': token }
+      });
       if (res.ok) {
         const data = await res.json();
         setBalances(data.credits || []);
@@ -91,9 +97,13 @@ export default function Credits() {
     if (!topUpTenant || !topUpAmount || parseFloat(topUpAmount) <= 0) return;
     setSubmitting(true);
     try {
+      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
       const res = await fetch(`${API_URL}/credits/topup`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'X-SuperAdmin-Token': token
+        },
         body: JSON.stringify({
           tenant_id: topUpTenant,
           amount: parseFloat(topUpAmount),
@@ -115,9 +125,13 @@ export default function Credits() {
     if (!rateTenant || !rateValue || parseFloat(rateValue) < 0) return;
     setSubmitting(true);
     try {
+      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
       const res = await fetch(`${API_URL}/credits/set-rate`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'X-SuperAdmin-Token': token
+        },
         body: JSON.stringify({
           tenant_id: rateTenant,
           rate_per_minute: parseFloat(rateValue),
@@ -136,7 +150,11 @@ export default function Credits() {
 
   const handleInitAll = async () => {
     try {
-      const res = await fetch(`${API_URL}/credits/init-all`, { method: 'POST' });
+      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+      const res = await fetch(`${API_URL}/credits/init-all`, {
+        method: 'POST',
+        headers: { 'X-SuperAdmin-Token': token }
+      });
       if (res.ok) loadBalances();
     } catch (e) {
       console.error('Init all failed:', e);
@@ -146,7 +164,10 @@ export default function Credits() {
   const loadTransactions = async (tenantId: string) => {
     setShowTxns(tenantId);
     try {
-      const res = await fetch(`${API_URL}/credits/${tenantId}/transactions?limit=20`);
+      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+      const res = await fetch(`${API_URL}/credits/${tenantId}/transactions?limit=20`, {
+        headers: { 'X-SuperAdmin-Token': token }
+      });
       if (res.ok) {
         const data = await res.json();
         setTransactions(data.transactions || []);

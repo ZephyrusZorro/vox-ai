@@ -14,11 +14,12 @@ Debug endpoints:
   • POST /debug/test-stt    — test Sarvam STT connectivity
 """
 import logging
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 from sqlalchemy import select
 
 from backend.db import async_session
+from backend.dependencies import verify_superadmin_token
 from backend.services.credit_service import CreditService
 
 logger = logging.getLogger(__name__)
@@ -41,7 +42,7 @@ class SetRatePayload(BaseModel):
 
 # ── Super Admin: All Balances ─────────────────────────────────────────────────
 
-@router.get("/credits")
+@router.get("/credits", dependencies=[Depends(verify_superadmin_token)])
 async def list_all_credits() -> dict:
     """Get all clinic credit balances (super admin)."""
     try:
@@ -55,7 +56,7 @@ async def list_all_credits() -> dict:
 
 # ── Super Admin: Top Up ──────────────────────────────────────────────────────
 
-@router.post("/credits/topup")
+@router.post("/credits/topup", dependencies=[Depends(verify_superadmin_token)])
 async def topup_credits(payload: TopUpPayload) -> dict:
     """Add credits to a clinic's balance."""
     try:
@@ -78,7 +79,7 @@ async def topup_credits(payload: TopUpPayload) -> dict:
 
 # ── Super Admin: Set Rate ────────────────────────────────────────────────────
 
-@router.post("/credits/set-rate")
+@router.post("/credits/set-rate", dependencies=[Depends(verify_superadmin_token)])
 async def set_credit_rate(payload: SetRatePayload) -> dict:
     """Update per-minute billing rate for a clinic."""
     try:
@@ -99,7 +100,7 @@ async def set_credit_rate(payload: SetRatePayload) -> dict:
 
 # ── Super Admin: Transaction History ─────────────────────────────────────────
 
-@router.get("/credits/{tenant_id}/transactions")
+@router.get("/credits/{tenant_id}/transactions", dependencies=[Depends(verify_superadmin_token)])
 async def get_transactions(tenant_id: str, limit: int = 50) -> dict:
     """Get transaction history for a specific clinic."""
     try:
@@ -139,7 +140,7 @@ async def my_balance(tenant_id: str) -> dict:
 
 # ── Super Admin: Initialize Credits for All Clinics ──────────────────────────
 
-@router.post("/credits/init-all")
+@router.post("/credits/init-all", dependencies=[Depends(verify_superadmin_token)])
 async def init_all_credits() -> dict:
     """Create credit records for all clinics that don't have one."""
     try:
@@ -171,7 +172,7 @@ async def init_all_credits() -> dict:
 # DEBUG ENDPOINTS
 # ══════════════════════════════════════════════════════════════════════════════
 
-@router.post("/debug/test-stt")
+@router.post("/debug/test-stt", dependencies=[Depends(verify_superadmin_token)])
 async def test_stt() -> dict:
     """
     Test Sarvam STT API connectivity.
@@ -229,7 +230,7 @@ async def test_stt() -> dict:
         }
 
 
-@router.post("/debug/test-tts")
+@router.post("/debug/test-tts", dependencies=[Depends(verify_superadmin_token)])
 async def test_tts() -> dict:
     """Test Sarvam TTS API connectivity."""
     import httpx

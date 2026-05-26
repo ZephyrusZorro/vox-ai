@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Eye, EyeOff, Phone } from 'lucide-react';
+import { API_URL } from '../api/client';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -32,6 +33,7 @@ export default function Login() {
     if (trimmedEmail === 'admin@lifodial.com' && password === 'lifodial2026') {
       localStorage.setItem('lifodial-authed', 'true');
       localStorage.setItem('lifodial-superadmin', 'true');
+      localStorage.setItem('lifodial-superadmin-token', password);
       localStorage.setItem('lifodial-email', trimmedEmail);
       navigate('/superadmin/dashboard');
       return;
@@ -45,7 +47,7 @@ export default function Login() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s max
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL || 'https://lifodial.onrender.com'}/auth/clinic-login`, {
+      const res = await fetch(`${API_URL}/auth/clinic-login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: trimmedEmail, password }),
@@ -63,6 +65,11 @@ export default function Login() {
         navigate('/my-agent');
         return;
       } else {
+        if (res.status === 401) {
+          setError('Invalid email or password');
+          setLoading(false);
+          return;
+        }
         // API returned error — allow as demo/fallback user
         localStorage.setItem('lifodial-authed', 'true');
         localStorage.setItem('lifodial-email', trimmedEmail);

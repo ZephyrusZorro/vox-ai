@@ -43,7 +43,13 @@ The backend handles the API, database connectivity, and the core AI agent logic.
    ```
 
 4. **Environment Variables:**
-   Ensure you have a `.env` file in the `backend` folder containing your `DATABASE_URL` (SQLite will be used if left blank), `GEMINI_API_KEY`, `SARVAM_API_KEY`, and `LIVEKIT` keys.
+   Create a `.env` file in the `backend` folder and declare the following variables:
+   * `DATABASE_URL`: Set this to your Supabase PostgreSQL connection string. For reliable IPv4 connections, use the Supabase **Session Pooler** host on port `5432`.
+     > [!IMPORTANT]
+     > If your database password contains `@` (e.g., `Musfir@h123`), it **must** be percent-encoded as `%40` in the URL (e.g., `postgresql://...:Musfir%40h123@aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres`).
+   * `SARVAM_API_KEY`: Set your Sarvam AI key to enable the primary native Indian languages voice agent integration.
+   * `GEMINI_API_KEY`: Google Gemini API key from AI Studio for the voice agent LLM brain.
+   * `LIVEKIT_*` keys: For WebRTC voice calling session hosting.
 
 5. **Start the FastAPI server:**
    ```bash

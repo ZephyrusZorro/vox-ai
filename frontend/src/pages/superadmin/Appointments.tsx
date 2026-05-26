@@ -56,7 +56,10 @@ export default function SAAppointments() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`${API_URL}/admin/appointments`);
+      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+      const res = await fetch(`${API_URL}/admin/appointments`, {
+        headers: { 'X-SuperAdmin-Token': token }
+      });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       setAppointments(data);

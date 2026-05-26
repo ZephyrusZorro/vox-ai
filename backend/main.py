@@ -2,7 +2,7 @@ import logging
 from contextlib import asynccontextmanager
 from collections.abc import AsyncGenerator
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
@@ -11,6 +11,7 @@ import os as _os
 
 from backend.config import settings
 from backend.db import init_db, engine, Base
+from backend.dependencies import verify_superadmin_token
 
 # ── Logging ────────────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -445,7 +446,7 @@ async def health() -> dict:
 async def root() -> dict[str, str]:
     return {"service": "Lifodial API", "docs": "/docs"}
 
-@app.post("/admin/reset-db", tags=["superadmin"])
+@app.post("/admin/reset-db", tags=["superadmin"], dependencies=[Depends(verify_superadmin_token)])
 async def reset_db():
     """
     ONE TIME USE: Drops and recreates all tables.
@@ -460,7 +461,7 @@ async def reset_db():
         await conn.run_sync(Base.metadata.create_all)
     return {"status": "ok", "message": "All tables recreated"}
 
-@app.post("/admin/seed", tags=["superadmin"])
+@app.post("/admin/seed", tags=["superadmin"], dependencies=[Depends(verify_superadmin_token)])
 async def seed_db():
     """
     ONE TIME USE: Seeds the database with demo data.
@@ -471,7 +472,7 @@ async def seed_db():
 
 
 # ── Debug / Audit Endpoint ────────────────────────────────────────────────────
-@app.get("/debug/audit", tags=["debug"])
+@app.get("/debug/audit", tags=["debug"], dependencies=[Depends(verify_superadmin_token)])
 async def audit_database():
     """Complete database audit — shows row counts and sample data. Remove after fixing."""
     from backend.db import AsyncSessionLocal
@@ -510,7 +511,7 @@ async def audit_database():
     return results
 
 
-@app.post("/admin/sync-tenants-from-agents", tags=["superadmin"])
+@app.post("/admin/sync-tenants-from-agents", tags=["superadmin"], dependencies=[Depends(verify_superadmin_token)])
 async def sync_tenants_from_agents():
     """
     Finds agents that have tenant_ids with no matching tenant.
@@ -566,7 +567,7 @@ async def sync_tenants_from_agents():
 # ── Routers ───────────────────────────────────────────────────────────────────
 from backend.routers import admin, tenants, doctors, voice, appointments, ws, voice_upload, agents, agent_test, platform, knowledge_base, voices, web_calls, phone_numbers, embed, models, simulation, latency, providers, bulk_calls, credits
 
-app.include_router(admin.router,          prefix="/admin",    tags=["superadmin"])
+app.include_router(admin.router,          prefix="/admin",    tags=["superadmin"], dependencies=[Depends(verify_superadmin_token)])
 app.include_router(voice.router,          prefix="/voice",    tags=["voice"])
 app.include_router(voices.router,         prefix="/voices",   tags=["voice-library"])
 app.include_router(tenants.router,        prefix="/tenants",  tags=["tenants"])

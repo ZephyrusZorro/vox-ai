@@ -39,8 +39,10 @@ function ApproveModal({ req, onClose, onDone }: { req: OnboardingRequest; onClos
   const handleApprove = async () => {
     setLoading(true);
     try {
+      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
       const res = await fetch(`${API_URL}/admin/onboarding-requests/${req.id}/approve`, {
         method: 'PATCH',
+        headers: { 'X-SuperAdmin-Token': token }
       });
       if (!res.ok) throw new Error(await res.text());
       const data = await res.json();
@@ -119,9 +121,13 @@ function RejectModal({ req, onClose, onDone }: { req: OnboardingRequest; onClose
     if (!reason.trim()) return;
     setLoading(true);
     try {
+      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
       await fetch(`${API_URL}/admin/onboarding-requests/${req.id}/reject`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'X-SuperAdmin-Token': token
+        },
         body: JSON.stringify({ reason }),
       });
     } catch { /* optimistic */ }
@@ -259,7 +265,10 @@ export default function OnboardingReqs() {
 
   const fetchRequests = useCallback(async () => {
     try {
-      const res = await fetch(`${API_URL}/admin/onboarding-requests`);
+      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+      const res = await fetch(`${API_URL}/admin/onboarding-requests`, {
+        headers: { 'X-SuperAdmin-Token': token }
+      });
       if (!res.ok) throw new Error();
       const data = await res.json();
       setRequests(data);
