@@ -228,7 +228,7 @@ export const useSAStore = create<SAStore>((set, get) => ({
           action: 'Model Assigned',
           clinic_name: clinic.name,
           model_name: model.name,
-          by: 'admin@lifodial.com',
+          by: 'admin@vox-ai.com',
           reason,
           timestamp: new Date().toLocaleString('en-IN'),
         },

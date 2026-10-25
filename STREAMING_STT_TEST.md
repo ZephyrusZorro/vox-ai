@@ -4,7 +4,7 @@
 
 1. **Start Backend**
    ```bash
-   cd lifodial
+   cd vox-ai
    .venv\Scripts\activate
    uvicorn backend.main:app --port 8000
    ```

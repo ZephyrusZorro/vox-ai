@@ -57,7 +57,7 @@ export default function SADashboard() {
 
     async function fetchClinics() {
       try {
-        const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+        const token = localStorage.getItem('vox-ai-superadmin-token') || 'vox-ai2026';
         const res = await fetch(`${API_URL}/admin/clinics`, {
           headers: { 'X-SuperAdmin-Token': token }
         });
@@ -108,7 +108,7 @@ export default function SADashboard() {
           Platform Overview
         </h1>
         <p style={{ color: '#888', fontSize: '13px', marginTop: '4px' }}>
-          Live metrics across the Lifodial AI network
+          Live metrics across the Vox AI network
         </p>
         <div style={{ display: 'flex', gap: '10px', marginTop: '14px', flexWrap: 'wrap' }}>
           <div style={{

@@ -1,6 +1,6 @@
 /**
- * Lifodial AI Receptionist Widget v1.0
- * CDN: https://api.lifodial.com/widget.js
+ * Vox AI Receptionist Widget v1.0
+ * CDN: https://api.vox-ai.com/widget.js
  * Usage: <script src="..." data-agent-id="agent-001"></script>
  *
  * No dependencies. Vanilla JS only. Works on any website.
@@ -20,14 +20,14 @@
   const _explicit = script.getAttribute('data-api-url');
   const _scriptSrc = script.src || '';
   const _scriptOrigin = _scriptSrc
-    ? new URL(_scriptSrc).origin          // e.g. https://api.lifodial.com
+    ? new URL(_scriptSrc).origin          // e.g. https://api.vox-ai.com
     : window.location.origin;             // same-origin dev fallback
   const API_BASE = (_explicit !== null && _explicit !== '') ? _explicit : _scriptOrigin;
   const POSITION = script.getAttribute('data-position') || 'bottom-right';
   const THEME    = script.getAttribute('data-theme')    || 'dark';
 
   if (!AGENT_ID) {
-    console.warn('[Lifodial] data-agent-id is required');
+    console.warn('[Vox AI] data-agent-id is required');
     return;
   }
 
@@ -81,7 +81,7 @@
 
   // ── Inject CSS ───────────────────────────────────────────────────────────────
   function injectStyles() {
-    if (document.getElementById('lifodial-styles')) return;
+    if (document.getElementById('vox-ai-styles')) return;
     const { primary, bg, text, surface, border } = getColors();
     const isRight  = POSITION.includes('right');
     const isBottom = POSITION.includes('bottom');
@@ -215,7 +215,7 @@
       }
     `;
     const style = document.createElement('style');
-    style.id = 'lifodial-styles';
+    style.id = 'vox-ai-styles';
     style.textContent = css;
     document.head.appendChild(style);
   }

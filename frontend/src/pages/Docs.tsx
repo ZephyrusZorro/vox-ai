@@ -18,7 +18,7 @@ export default function Docs() {
       <div style={{ maxWidth: '600px', width: '100%', textAlign: 'center' }}>
         <h1 style={{ fontSize: '32px', fontWeight: 700, marginBottom: '16px' }}>Documentation</h1>
         <p style={{ fontSize: '16px', color: '#A1A1A1', marginBottom: '48px' }}>
-          Lifodial API and integration docs — coming soon
+          Vox AI API and integration docs — coming soon
         </p>
         
         <div style={{
@@ -28,7 +28,7 @@ export default function Docs() {
           padding: '32px',
           marginBottom: '32px'
         }}>
-          Documentation is being prepared. Contact hello@lifodial.com for technical details.
+          Documentation is being prepared. Contact hello@vox-ai.com for technical details.
         </div>
         
         <Link to="/" style={{ 

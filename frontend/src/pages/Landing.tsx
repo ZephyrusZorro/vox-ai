@@ -152,8 +152,8 @@ function Navbar() {
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
             <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
               <img 
-                src="/assets/lifodial-logo.png"
-                alt="Lifodial"
+                src="/assets/vox-ai-logo.png"
+                alt="Vox AI"
                 className="logo-navbar"
                 style={{
                   height: '36px',
@@ -304,7 +304,7 @@ function HeroSection() {
         zIndex: 1,
         fontFamily: "'Plus Jakarta Sans', sans-serif",
       }}>
-        Lifodial is an AI voice receptionist that answers every patient call,
+        Vox AI is an AI voice receptionist that answers every patient call,
         books appointments, and speaks their language — 24 hours a day, 7 days a week.
       </p>
 
@@ -359,7 +359,7 @@ function HeroSection() {
             backgroundColor: T.surface2, border: `1px solid ${T.border}`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
-            <span style={{ fontSize: '11px', color: T.textMuted }}>app.lifodial.com/dashboard</span>
+            <span style={{ fontSize: '11px', color: T.textMuted }}>app.vox-ai.com/dashboard</span>
           </div>
         </div>
 
@@ -374,7 +374,7 @@ function HeroSection() {
               <div style={{ width: '18px', height: '18px', borderRadius: '4px', backgroundColor: T.accent, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Phone size={9} color="#000" />
               </div>
-              <span style={{ fontSize: '11px', fontWeight: 600, color: T.text }}>Lifodial</span>
+              <span style={{ fontSize: '11px', fontWeight: 600, color: T.text }}>Vox AI</span>
             </div>
             {['Dashboard','Call Logs','Appointments','Doctors','Analytics'].map((item, i) => (
               <div key={item} style={{
@@ -606,7 +606,7 @@ function BenefitsSection() {
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '64px' }}>
           <h2 style={{ fontSize: 'clamp(32px, 4vw, 44px)', fontWeight: 600, color: T.text, letterSpacing: '-0.02em', margin: '0 0 12px' }}>
-            Why clinics choose Lifodial
+            Why clinics choose Vox AI
           </h2>
           <p style={{ fontSize: '16px', color: T.textMuted }}>Built specifically for healthcare in India and the Middle East</p>
         </div>
@@ -683,7 +683,7 @@ function DemoSection() {
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
           <h2 style={{ fontSize: 'clamp(32px, 4vw, 44px)', fontWeight: 600, color: T.text, letterSpacing: '-0.02em', margin: '0 0 12px' }}>
-            See Lifodial in action
+            See Vox AI in action
           </h2>
           <p style={{ fontSize: '16px', color: T.textMuted }}>A real conversation between a patient and our AI</p>
         </div>
@@ -699,7 +699,7 @@ function DemoSection() {
               <span style={{ fontSize: '13px', color: T.textMuted, fontWeight: 500 }}>Recording in progress · 0:47</span>
             </div>
             <div style={{ fontSize: '13px', color: T.textMuted }}>
-              AI: Lifodial · Patient: +91 98XX XXXX34
+              AI: Vox AI · Patient: +91 98XX XXXX34
             </div>
           </div>
           
@@ -708,7 +708,7 @@ function DemoSection() {
             
             {messages >= 1 && (
               <div className="fade-up" style={{ alignSelf: 'flex-start', maxWidth: '80%' }}>
-                <span style={{ fontSize: '11px', color: T.textMuted, marginBottom: '4px', display: 'block' }}>Lifodial AI - 0:00</span>
+                <span style={{ fontSize: '11px', color: T.textMuted, marginBottom: '4px', display: 'block' }}>Vox AI - 0:00</span>
                 <div style={{ backgroundColor: T.surface2, padding: '12px 16px', borderRadius: '16px 16px 16px 4px', fontSize: '15px', color: T.text, lineHeight: 1.5 }}>
                   "Namaste! Apollo Clinic mein aapka swagat hai. Main aapki kaise madad kar sakti hoon?"
                 </div>
@@ -726,7 +726,7 @@ function DemoSection() {
 
             {messages >= 3 && (
               <div className="fade-up" style={{ alignSelf: 'flex-start', maxWidth: '80%' }}>
-                <span style={{ fontSize: '11px', color: T.textMuted, marginBottom: '4px', display: 'block' }}>Lifodial AI - 0:06</span>
+                <span style={{ fontSize: '11px', color: T.textMuted, marginBottom: '4px', display: 'block' }}>Vox AI - 0:06</span>
                 <div style={{ backgroundColor: T.surface2, padding: '12px 16px', borderRadius: '16px 16px 16px 4px', fontSize: '15px', color: T.text, lineHeight: 1.5 }}>
                   "Dr. Suresh Menon available hain aaj. Kya aap 11:00 AM ka slot lenge?"
                 </div>
@@ -744,7 +744,7 @@ function DemoSection() {
 
             {messages >= 5 && (
               <div className="fade-up" style={{ alignSelf: 'flex-start', maxWidth: '80%' }}>
-                <span style={{ fontSize: '11px', color: T.textMuted, marginBottom: '4px', display: 'block' }}>Lifodial AI - 0:14</span>
+                <span style={{ fontSize: '11px', color: T.textMuted, marginBottom: '4px', display: 'block' }}>Vox AI - 0:14</span>
                 <div style={{ backgroundColor: T.surface2, padding: '12px 16px', borderRadius: '16px 16px 16px 4px', fontSize: '15px', color: T.text, lineHeight: 1.5 }}>
                   "Perfect! Aapki appointment Dr. Suresh Menon ke saath aaj 11:00 AM ke liye confirm ho gayi. Appointment ID: APT-2847. Dhanyavaad!"
                   <div style={{ marginTop: '12px', display: 'inline-block', backgroundColor: T.bg, border: `1px solid ${T.borderMid}`, color: T.text, padding: '4px 12px', borderRadius: '99px', fontSize: '12px', fontWeight: 500 }}>
@@ -803,7 +803,7 @@ function HowItWorks() {
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '64px' }}>
           <h2 style={{ fontSize: 'clamp(32px, 4vw, 44px)', fontWeight: 600, color: T.text, letterSpacing: '-0.02em', margin: '0 0 12px' }}>
-            How Lifodial works
+            How Vox AI works
           </h2>
           <p style={{ fontSize: '16px', color: T.textMuted, maxWidth: '460px', margin: '0 auto' }}>
             Three steps from contact to your first AI-answered call
@@ -924,7 +924,7 @@ function ContactSection() {
     e.preventDefault();
     setSubmitted(true);
     // Fixture mode: save to localstorage placeholder
-    localStorage.setItem('lifodial_contact_submitted', 'true');
+    localStorage.setItem('vox_ai_contact_submitted', 'true');
   };
 
   return (
@@ -965,7 +965,7 @@ function ContactSection() {
                </div>
                <h3 style={{ fontSize: '24px', fontWeight: 600, color: T.text, marginBottom: '16px' }}>Request received!</h3>
                <p style={{ fontSize: '15px', color: T.textSub, marginBottom: '8px' }}>Our team will contact you within 24 hours.</p>
-               <p style={{ fontSize: '15px', color: T.textSub }}>In the meantime, feel free to email us at <strong>hello@lifodial.com</strong></p>
+               <p style={{ fontSize: '15px', color: T.textSub }}>In the meantime, feel free to email us at <strong>hello@vox-ai.com</strong></p>
              </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -1079,8 +1079,8 @@ function Footer() {
           {/* Brand column */}
           <div>
             <img 
-              src="/assets/lifodial-logo.png"
-              alt="Lifodial"
+              src="/assets/vox-ai-logo.png"
+              alt="Vox AI"
               className="logo"
               style={{
                 height: '24px',
@@ -1117,7 +1117,7 @@ function Footer() {
           flexWrap: 'wrap', gap: '12px',
         }}>
           <span style={{ fontSize: '12px', color: T.textVeryMuted }}>
-            © 2026 Lifodial. All rights reserved.
+            © 2026 Vox AI. All rights reserved.
           </span>
           <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
              <span style={{ fontSize: '12px', color: T.textVeryMuted }}>

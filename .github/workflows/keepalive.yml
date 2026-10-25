@@ -16,9 +16,9 @@ jobs:
     steps:
       - name: Ping /health
         run: |
-          echo "Pinging https://lifodial.onrender.com/health"
+          echo "Pinging https://vox-ai.onrender.com/health"
           for i in 1 2 3; do
-            if curl -fsSL --max-time 30 https://lifodial.onrender.com/health; then
+            if curl -fsSL --max-time 30 https://vox-ai.onrender.com/health; then
               echo ""
               echo "Ping OK on attempt $i"
               exit 0

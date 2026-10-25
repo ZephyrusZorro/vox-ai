@@ -21,11 +21,12 @@ logger = logging.getLogger(__name__)
 
 
 def get_database_url() -> str:
-    raw = os.getenv("DATABASE_URL", "")
+    raw = os.getenv("DATABASE_URL", "").strip()
 
     if not raw:
         logger.warning("No DATABASE_URL - using SQLite fallback")
-        return "sqlite+aiosqlite:///./lifodial.db"
+        db_file = "vox-ai.db" if os.path.exists("vox-ai.db") else ("vox-ai.db" if os.path.exists("vox-ai.db") else "vox-ai.db")
+        return f"sqlite+aiosqlite:///./{db_file}"
 
     # Convert sync URL to async driver format
     if raw.startswith("postgresql://"):
@@ -118,6 +119,7 @@ async def init_db():
     Creates missing tables (checkfirst=True = safe to call always).
     With Supabase: all tables exist already = instant no-op.
     """
+    global engine, AsyncSessionLocal, IS_SQLITE, db_label
     logger.info("init_db: starting...")
     _import_all_models()
 
@@ -129,13 +131,30 @@ async def init_db():
             await conn.run_sync(
                 lambda c: Base.metadata.create_all(c, checkfirst=True)
             )
-        logger.info("? init_db: complete")
-        print(f"? Database ready ({db_label})")
+        logger.info("init_db: complete")
+        print(f"Database ready ({db_label})")
     except Exception as e:
-        # Non-fatal - tables likely already exist in Supabase
-        logger.warning(f"init_db non-fatal warning: {str(e)[:120]}")
-        print(f"??  DB init warning (non-fatal): {str(e)[:80]}")
-        print("    Tables likely already exist in Supabase - continuing...")
+        logger.warning(f"init_db connection failed on primary DB: {e}")
+        if not IS_SQLITE:
+            try:
+                print("Falling back to local SQLite database...")
+                sqlite_file = "vox-ai.db" if os.path.exists("vox-ai.db") else "vox-ai.db"
+                sqlite_url = f"sqlite+aiosqlite:///./{sqlite_file}"
+                engine = create_async_engine(
+                    sqlite_url,
+                    echo=False,
+                    connect_args={"check_same_thread": False},
+                )
+                AsyncSessionLocal.configure(bind=engine)
+                IS_SQLITE = True
+                db_label = f"SQLite (fallback: {sqlite_file})"
+                async with engine.begin() as conn:
+                    await conn.run_sync(
+                        lambda c: Base.metadata.create_all(c, checkfirst=True)
+                    )
+                print(f"Database ready ({db_label})")
+            except Exception as sql_e:
+                logger.error(f"SQLite fallback init also failed: {sql_e}")
 
 
 def _import_all_models():

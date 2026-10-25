@@ -19,7 +19,7 @@ from livekit.plugins import silero
 load_dotenv()
 
 # --- Config ---
-SYSTEM_PROMPT = "You are a helpful medical receptionist for Lifodial. Be polite and concise."
+SYSTEM_PROMPT = "You are a helpful medical receptionist for Vox AI. Be polite and concise."
 SARVAM_API_KEY = os.getenv("SARVAM_API_KEY")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
@@ -75,7 +75,7 @@ async def entrypoint(ctx: JobContext):
     )
 
     agent.start(ctx.room)
-    await agent.say("Hello! This is Lifodial. How can I help you?", allow_interruptions=True)
+    await agent.say("Hello! This is Vox AI. How can I help you?", allow_interruptions=True)
 
 if __name__ == "__main__":
     cli.run_app(WorkerOptions(entrypoint_fnc=entrypoint, prewarm_fnc=prewarm, agent_name="inbound-agent"))

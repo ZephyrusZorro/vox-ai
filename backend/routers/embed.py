@@ -96,7 +96,7 @@ async def embed_config(agent_id: str, request: Request) -> JSONResponse:
             return JSONResponse(
                 {
                     "error": "This agent is not authorized for this domain. "
-                             "Contact your Lifodial admin."
+                             "Contact your Vox AI admin."
                 },
                 status_code=403,
                 headers=_cors_headers(),

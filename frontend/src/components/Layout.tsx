@@ -93,8 +93,8 @@ export default function Layout() {
         >
           <div className="sidebar-logo">
             <img
-              src="/assets/lifodial-logo.png"
-              alt="Lifodial"
+              src="/assets/vox-ai-logo.png"
+              alt="Vox AI"
               style={{
                 height: '28px',
                 width: 'auto',
@@ -177,11 +177,11 @@ export default function Layout() {
           </div>
           <button
             onClick={() => {
-              localStorage.removeItem('lifodial-authed');
-              localStorage.removeItem('lifodial-superadmin');
-              localStorage.removeItem('lifodial-tenant-id');
-              localStorage.removeItem('lifodial-email');
-              localStorage.removeItem('lifodial-clinic-name');
+              localStorage.removeItem('vox-ai-authed');
+              localStorage.removeItem('vox-ai-superadmin');
+              localStorage.removeItem('vox-ai-tenant-id');
+              localStorage.removeItem('vox-ai-email');
+              localStorage.removeItem('vox-ai-clinic-name');
               navigate('/');
             }}
             className="flex items-center gap-2 w-full transition-colors"
@@ -224,8 +224,8 @@ export default function Layout() {
             <Menu size={20} />
           </button>
           <img
-            src="/assets/lifodial-logo.png"
-            alt="Lifodial"
+            src="/assets/vox-ai-logo.png"
+            alt="Vox AI"
             style={{ height: '24px', width: 'auto', mixBlendMode: 'lighten' }}
           />
           <div style={{ width: '36px' }} /> {/* spacer */}

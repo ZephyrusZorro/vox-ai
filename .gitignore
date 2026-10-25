@@ -76,3 +76,7 @@ logs/
 scratch/
 test_db_conn.py
 push_render_env.ps1
+portfolio/
+.voxx-tmp/
+diff_changes.txt
+output.txt

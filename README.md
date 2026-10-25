@@ -1,6 +1,6 @@
-# Lifodial - AI Voice Receptionist for Clinics
+# Vox AI - AI Voice Receptionist for Clinics
 
-Lifodial is a production-grade AI voice receptionist platform designed for healthcare, clinics, and hospitals. It features ultra-low latency voice-to-voice capabilities, a robust Master Agent architecture with barge-in interruption handling, AI-driven post-call evaluations, and a beautiful React frontend.
+Vox AI is a production-grade AI voice receptionist platform designed for healthcare, clinics, and hospitals. It features ultra-low latency voice-to-voice capabilities, a robust Master Agent architecture with barge-in interruption handling, AI-driven post-call evaluations, and a beautiful React frontend.
 
 ## 🚀 Tech Stack
 
@@ -16,7 +16,7 @@ Lifodial is a production-grade AI voice receptionist platform designed for healt
 
 ## 🛠️ Local Development Setup
 
-To run Lifodial locally for development, you will need to start both the Python Backend server and the React Frontend server.
+To run Vox AI locally for development, you will need to start both the Python Backend server and the React Frontend server.
 
 ### 1. Backend Setup
 
@@ -83,7 +83,7 @@ The frontend provides the Administration dashboards (Clinic view and SuperAdmin 
 ## 🔑 Default Dashboards & Logins
 
 - **Clinic Dashboard:** `http://localhost:5173/login` (Use any credentials in demo mode)
-- **SuperAdmin Dashboard:** `http://localhost:5173/superadmin/login` (Hardcoded credentials: `admin@lifodial.com` / `lifodial2026`)
+- **SuperAdmin Dashboard:** `http://localhost:5173/superadmin/login` (Hardcoded credentials: `admin@vox-ai.com` / `vox-ai2026`)
 
 ## 🚢 Deployment Updates
 *(Note: A comprehensive VPS container deployment guide is available in `scripts/setup_vps.sh` for when the application moves to production).*

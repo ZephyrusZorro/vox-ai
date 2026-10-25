@@ -8,6 +8,6 @@ dev-agent:
 
 dev-all:
 	@echo "Starting Uvicorn and LiveKit Agent..."
-	@start "Lifodial Backend" uvicorn backend.main:app --reload --port 8001
+	@start "Vox AI Backend" uvicorn backend.main:app --reload --port 8001
 	@start "LiveKit Agent" python -m backend.agent.pipeline dev
 

@@ -34,9 +34,9 @@ def _get_http_client() -> httpx.AsyncClient:
     return _http_client
 
 
-class LifodialAgent(Agent):
+class VoxAIAgent(Agent):
     """
-    Streaming voice pipeline for Lifodial.
+    Streaming voice pipeline for Vox AI.
     Uses Sarvam for STT + TTS, Gemini Flash for LLM.
     Target: < 800ms voice-to-voice latency.
     """
@@ -251,7 +251,7 @@ async def entrypoint(ctx):
         turn_detection="vad",
     )
     
-    agent = LifodialAgent(agent_config, tenant)
+    agent = VoxAIAgent(agent_config, tenant)
     
     # Start session
     session.start(

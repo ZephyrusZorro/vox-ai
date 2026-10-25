@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lifodial Widget Test Page — Apollo Mumbai</title>
+  <title>Vox AI Widget Test Page — Apollo Mumbai</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -68,7 +68,7 @@
 </head>
 <body>
   <div class="notice">
-    🤖 Lifodial Widget Test — look for the green button in the bottom-right corner!
+    🤖 Vox AI Widget Test — look for the green button in the bottom-right corner!
   </div>
 
   <nav>
@@ -87,9 +87,9 @@
 
   <!-- Dev controls (NOT shipped to clinics) -->
   <div style="position:fixed;top:80px;right:20px;z-index:9999;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:14px;box-shadow:0 4px 16px rgba(0,0,0,.08);width:300px;font-size:13px">
-    <div style="font-weight:700;margin-bottom:8px;color:#1a1a2e">Lifodial Widget Tester</div>
+    <div style="font-weight:700;margin-bottom:8px;color:#1a1a2e">Vox AI Widget Tester</div>
     <label style="display:block;margin-bottom:6px;color:#555">Backend URL</label>
-    <input id="api-url" value="https://lifodial.onrender.com" style="width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:6px;font-size:12px;margin-bottom:8px"/>
+    <input id="api-url" value="https://vox-ai.onrender.com" style="width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:6px;font-size:12px;margin-bottom:8px"/>
     <label style="display:block;margin-bottom:6px;color:#555">Agent ID</label>
     <input id="agent-id" placeholder="paste agent UUID from agent_configs.id" style="width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:6px;font-size:12px;font-family:monospace;margin-bottom:10px"/>
     <button onclick="loadWidget()" style="width:100%;padding:8px;background:#0f5fa8;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600">Load Widget</button>
@@ -98,7 +98,7 @@
 
   <script>
     // ═══════════════════════════════════════════════════
-    // LIFODIAL WIDGET LOADER — for end clinics this becomes
+    // VOX_AI WIDGET LOADER — for end clinics this becomes
     // a single <script src=".../widget.js" data-agent-id="...">
     // ═══════════════════════════════════════════════════
     function loadWidget() {
@@ -107,7 +107,7 @@
       if (!agentId) { alert('Paste an agent UUID first'); return; }
 
       // Tear down previous widget if any
-      ['lfd-widget','lifodial-styles','lfd-panel','lfd-trigger','lfd-err-badge']
+      ['lfd-widget','vox-ai-styles','lfd-panel','lfd-trigger','lfd-err-badge']
         .forEach(id => { const el = document.getElementById(id); if (el) el.remove(); });
       document.querySelectorAll('script[data-agent-id]').forEach(s => s.remove());
 

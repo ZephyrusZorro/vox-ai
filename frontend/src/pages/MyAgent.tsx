@@ -68,8 +68,8 @@ export default function MyAgent() {
     setLoading(true);
     setError('');
     try {
-      const email = localStorage.getItem('lifodial-email') || '';
-      const tenantId = localStorage.getItem('lifodial-tenant-id') || '';
+      const email = localStorage.getItem('vox-ai-email') || '';
+      const tenantId = localStorage.getItem('vox-ai-tenant-id') || '';
 
       let myAgent: AgentInfo | null = null;
 
@@ -149,7 +149,7 @@ export default function MyAgent() {
           <h2 style={{ color: '#fff', marginTop: 16 }}>No Agent Found</h2>
           <p style={{ color: '#888' }}>{error || 'No agent is configured for your clinic yet.'}</p>
           <p style={{ color: '#666', fontSize: 13 }}>
-            Please contact the Lifodial team to set up your AI receptionist.
+            Please contact the Vox AI team to set up your AI receptionist.
           </p>
         </div>
       </div>
@@ -217,7 +217,7 @@ export default function MyAgent() {
         {/* Left: Voice Config */}
         <div style={styles.card}>
           <h3 style={styles.cardTitle}>Voice Configuration</h3>
-          <p style={styles.cardSubtitle}>Read-only — managed by Lifodial team</p>
+          <p style={styles.cardSubtitle}>Read-only — managed by Vox AI team</p>
 
           <div style={styles.configGrid}>
             <ConfigRow icon={<Mic size={16} />} label="STT Model" value={agent.stt_model || 'saaras:v3'} />

@@ -1,10 +1,10 @@
 ##############################################################################
-# Lifodial — Render.com deployment configuration
+# Vox AI — Render.com deployment configuration
 # https://render.com/docs/yaml-spec
 #
 # Services:
-#   1. lifodial-api      — FastAPI backend  (Docker, python:3.11-slim + ffmpeg)
-#   2. lifodial-frontend — React frontend   (Render Static Site, Vite build)
+#   1. vox-ai-api      — FastAPI backend  (Docker, python:3.11-slim + ffmpeg)
+#   2. vox-ai-frontend — React frontend   (Render Static Site, Vite build)
 #
 # One-time setup:
 #   1. Push this file to the root of your repo.
@@ -16,7 +16,7 @@ services:
 
   # ── Backend API (Docker runtime so we get ffmpeg + libpq) ──────────────────
   - type: web
-    name: lifodial-api
+    name: vox-ai-api
     runtime: docker
     dockerfilePath: ./Dockerfile.backend
     region: singapore          # closest to India / Middle East
@@ -44,7 +44,7 @@ services:
         sync: false             # optional 32-byte base64 key
 
       # ── CORS: add your Vercel frontend URL here ───────────────────────────────
-      # Example: https://lifodial.vercel.app
+      # Example: https://vox-ai.vercel.app
       - key: CORS_ORIGIN
         sync: false
 
@@ -110,7 +110,7 @@ services:
 
   # ── Frontend (React / Vite — built as static site) ────────────────────────
   - type: web
-    name: lifodial-frontend
+    name: vox-ai-frontend
     runtime: static
     buildCommand: cd frontend && npm ci && npm run build
     staticPublishPath: ./frontend/dist
@@ -138,4 +138,4 @@ services:
 
     envVars:
       - key: VITE_API_URL
-        value: https://lifodial-api.onrender.com
+        value: https://vox-ai-api.onrender.com

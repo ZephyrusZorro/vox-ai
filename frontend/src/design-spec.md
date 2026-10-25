@@ -1,4 +1,4 @@
-# Lifodial Design System — Extracted from Stitch Prototype
+# Vox AI Design System — Extracted from Stitch Prototype
 # Project: https://stitch.withgoogle.com/projects/11738954248656448318
 # Theme: "Clinical Precision" — High-Fidelity Instrument
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 export function useTheme() {
   const [theme, setTheme] = useState<'dark' | 'light'>(
-    () => (localStorage.getItem('lifodial-theme') as 'dark' | 'light') || 'dark'
+    () => (localStorage.getItem('vox-ai-theme') as 'dark' | 'light') || 'dark'
   )
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export function useTheme() {
     } else {
       root.classList.remove('light')
     }
-    localStorage.setItem('lifodial-theme', theme)
+    localStorage.setItem('vox-ai-theme', theme)
   }, [theme])
 
   const toggle = () => setTheme(t => t === 'dark' ? 'light' : 'dark')

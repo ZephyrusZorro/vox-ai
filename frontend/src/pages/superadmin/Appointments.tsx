@@ -56,7 +56,7 @@ export default function SAAppointments() {
     setLoading(true);
     setError(null);
     try {
-      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+      const token = localStorage.getItem('vox-ai-superadmin-token') || 'vox-ai2026';
       const res = await fetch(`${API_URL}/admin/appointments`, {
         headers: { 'X-SuperAdmin-Token': token }
       });

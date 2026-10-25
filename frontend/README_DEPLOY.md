@@ -1,4 +1,4 @@
-# Vercel Deployment (Lifodial Frontend)
+# Vercel Deployment (Vox AI Frontend)
 
 Follow these steps to deploy the frontend to Vercel with zero setup.
 
@@ -14,7 +14,7 @@ cd frontend
 vercel login
 vercel --prod
 ```
-- **Project Name:** `lifodial-frontend`
+- **Project Name:** `vox-ai-frontend`
 - **Location:** `.`
 - **Default settings:** Yes
 

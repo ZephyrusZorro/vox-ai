@@ -15,9 +15,9 @@ export default function Login() {
   // If user is already logged in, send them to the correct dashboard
   // instead of showing the login form again.
   React.useEffect(() => {
-    const isAuthed = localStorage.getItem('lifodial-authed') === 'true';
+    const isAuthed = localStorage.getItem('vox-ai-authed') === 'true';
     if (isAuthed) {
-      const isSuperAdmin = localStorage.getItem('lifodial-superadmin') === 'true';
+      const isSuperAdmin = localStorage.getItem('vox-ai-superadmin') === 'true';
       navigate(isSuperAdmin ? '/superadmin/dashboard' : '/dashboard', { replace: true });
     }
   }, [navigate]);
@@ -30,18 +30,18 @@ export default function Login() {
     const trimmedEmail = email.toLowerCase().trim();
 
     // ── FAST PATH: SuperAdmin credentials — no API call needed ──────────
-    if (trimmedEmail === 'admin@lifodial.com' && password === 'lifodial2026') {
-      localStorage.setItem('lifodial-authed', 'true');
-      localStorage.setItem('lifodial-superadmin', 'true');
-      localStorage.setItem('lifodial-superadmin-token', password);
-      localStorage.setItem('lifodial-email', trimmedEmail);
+    if (trimmedEmail === 'admin@vox-ai.com' && password === 'vox-ai2026') {
+      localStorage.setItem('vox-ai-authed', 'true');
+      localStorage.setItem('vox-ai-superadmin', 'true');
+      localStorage.setItem('vox-ai-superadmin-token', password);
+      localStorage.setItem('vox-ai-email', trimmedEmail);
       navigate('/superadmin/dashboard');
       return;
     }
 
     // ── CLINIC LOGIN: API call with 5-second timeout ────────────────────
     // Clear superadmin flag — this is a clinic login attempt.
-    localStorage.removeItem('lifodial-superadmin');
+    localStorage.removeItem('vox-ai-superadmin');
 
     try {
       const controller = new AbortController();
@@ -57,10 +57,10 @@ export default function Login() {
 
       if (res.ok) {
         const data = await res.json();
-        localStorage.setItem('lifodial-authed', 'true');
-        localStorage.setItem('lifodial-tenant-id', data.tenant_id || '');
-        localStorage.setItem('lifodial-email', trimmedEmail);
-        localStorage.setItem('lifodial-clinic-name', data.clinic_name || '');
+        localStorage.setItem('vox-ai-authed', 'true');
+        localStorage.setItem('vox-ai-tenant-id', data.tenant_id || '');
+        localStorage.setItem('vox-ai-email', trimmedEmail);
+        localStorage.setItem('vox-ai-clinic-name', data.clinic_name || '');
         // Clinic admin goes to /my-agent
         navigate('/my-agent');
         return;
@@ -71,13 +71,13 @@ export default function Login() {
           return;
         }
         // API returned error — allow as demo/fallback user
-        localStorage.setItem('lifodial-authed', 'true');
-        localStorage.setItem('lifodial-email', trimmedEmail);
+        localStorage.setItem('vox-ai-authed', 'true');
+        localStorage.setItem('vox-ai-email', trimmedEmail);
       }
     } catch {
       // Network error or timeout — allow access as demo fallback
-      localStorage.setItem('lifodial-authed', 'true');
-      localStorage.setItem('lifodial-email', trimmedEmail);
+      localStorage.setItem('vox-ai-authed', 'true');
+      localStorage.setItem('vox-ai-email', trimmedEmail);
     }
     setLoading(false);
     navigate('/dashboard');
@@ -94,8 +94,8 @@ export default function Login() {
         <div className="text-center mb-8">
           <Link to="/" style={{ display: 'block', textDecoration: 'none' }}>
             <img 
-              src="/assets/lifodial-logo.png"
-              alt="Lifodial"
+              src="/assets/vox-ai-logo.png"
+              alt="Vox AI"
               className="logo"
               style={{
                 height: '48px',

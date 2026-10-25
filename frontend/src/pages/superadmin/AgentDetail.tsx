@@ -251,7 +251,7 @@ function EmbedSection({ agent, agentId, updateField }: { agent: any; agentId: st
           1. Open <b style={{ color: '#fff' }}>Wix Editor</b><br />
           2. Click <em>Settings → Custom Code</em><br />
           3. Click <b style={{ color: '#fff' }}>+ Add Custom Code</b><br />
-          4. Paste the Lifodial code<br />
+          4. Paste the Vox AI code<br />
           5. Set "Place Code in" to <code style={{ color: color }}>Body - end</code><br />
           6. Click <b style={{ color: '#fff' }}>Apply</b>
         </div>
@@ -506,7 +506,7 @@ function EmbedSection({ agent, agentId, updateField }: { agent: any; agentId: st
   <body>
     <!-- Your website content -->
 
-    <!-- ↓ Paste Lifodial script here -->
+    <!-- ↓ Paste Vox AI script here -->
     <script
       src="${apiBase}/widget.js"
       data-agent-id="${agentId}"
@@ -1150,7 +1150,7 @@ export default function AgentDetail() {
                     <div><Label>API Token</Label><Input type="password" value="********" onChange={()=>{}} /></div>
                     <div><Label>Account SID</Label><Input value={agent.sip_account_sid} onChange={(v:any) => updateField('sip_account_sid', v)} /></div>
                     <div><Label>Virtual Number</Label><Input value={agent.ai_number} onChange={(v:any) => updateField('ai_number', v)} /></div>
-                    <div style={{ gridColumn: '1 / -1' }}><Label>Webhook URL</Label><Input value={`https://api.lifodial.com/voice/incoming/${agent.id}`} locked /></div>
+                    <div style={{ gridColumn: '1 / -1' }}><Label>Webhook URL</Label><Input value={`https://api.vox-ai.com/voice/incoming/${agent.id}`} locked /></div>
                   </div>
                 )}
                 {agent.telephony_option === 'livekit' && (

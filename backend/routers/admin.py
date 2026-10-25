@@ -120,7 +120,7 @@ async def create_clinic(data: ClinicCreate, db: AsyncSession = Depends(get_db)):
             "tenant_id": new_tenant.id,
             "ai_number": ai_num,
             "login_credentials": {
-                "email": f"admin@{slug}.lifodial.com",
+                "email": f"admin@{slug}.vox-ai.com",
                 "password": gen_pass
             }
         }
@@ -300,7 +300,7 @@ async def approve_onboarding_request(req_id: str, db: AsyncSession = Depends(get
             "status": "approved",
             "tenant_id": new_tenant.id,
             "credentials": {
-                "email": f"admin@{slug}.lifodial.com",
+                "email": f"admin@{slug}.vox-ai.com",
                 "password": gen_pass,
                 "ai_number": ai_num,
             }

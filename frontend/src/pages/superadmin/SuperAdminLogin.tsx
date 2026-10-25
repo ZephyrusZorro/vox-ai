@@ -8,9 +8,9 @@ export default function SuperAdminLogin() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email === 'admin@lifodial.com' && password === 'lifodial2026') {
-      localStorage.setItem('lifodial-superadmin', 'true');
-      localStorage.setItem('lifodial-superadmin-token', password);
+    if (email === 'admin@vox-ai.com' && password === 'vox-ai2026') {
+      localStorage.setItem('vox-ai-superadmin', 'true');
+      localStorage.setItem('vox-ai-superadmin-token', password);
       navigate('/superadmin/dashboard');
     } else {
       alert('Invalid credentials');
@@ -25,8 +25,8 @@ export default function SuperAdminLogin() {
       >
         <div className="text-center mb-8 flex flex-col items-center">
           <img 
-            src="/assets/lifodial-logo.png"
-            alt="Lifodial"
+            src="/assets/vox-ai-logo.png"
+            alt="Vox AI"
             style={{
               height: '48px',
               width: 'auto',
@@ -56,7 +56,7 @@ export default function SuperAdminLogin() {
             <input 
               required type="email" value={email} onChange={e => setEmail(e.target.value)}
               className="w-full px-4 py-3 rounded-lg text-sm bg-[#1A1A1A] text-white border border-[#2E2E2E] focus:outline-none focus:border-[#3ECF8E] transition-colors"
-              placeholder="name@lifodial.com"
+              placeholder="name@vox-ai.com"
             />
           </div>
           <div>
@@ -71,7 +71,7 @@ export default function SuperAdminLogin() {
           <div className="flex justify-end">
             <button 
               type="button"
-              onClick={() => { setEmail('admin@lifodial.com'); setPassword('lifodial2026'); }}
+              onClick={() => { setEmail('admin@vox-ai.com'); setPassword('vox-ai2026'); }}
               style={{ background: 'none', border: 'none', color: '#3ECF8E', fontSize: '11px', fontWeight: 600, cursor: 'pointer', padding: 0 }}
             >
               Auto-fill demo credentials

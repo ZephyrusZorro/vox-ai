@@ -694,7 +694,7 @@ function Step5({ state }: { state: WizardState }) {
 
 function SuccessScreen({ agentId, password, navigate }: { agentId: string; password: string; navigate: (to: string) => void }) {
   const [copied, setCopied] = useState(false);
-  const creds = `Email: admin@clinic.lifodial.com\nPassword: ${password}`;
+  const creds = `Email: admin@clinic.vox-ai.com\nPassword: ${password}`;
 
   return (
     <div style={{ textAlign: 'center', padding: '40px 0' }}>
@@ -707,7 +707,7 @@ function SuccessScreen({ agentId, password, navigate }: { agentId: string; passw
       <div style={{ background: '#111', border: '1px solid rgba(251,191,36,0.3)', borderRadius: '12px', padding: '20px', marginBottom: '24px', textAlign: 'left' }}>
         <div style={{ fontSize: '12px', fontWeight: 700, color: '#FBBF24', marginBottom: '10px', letterSpacing: '0.06em' }}>CLINIC LOGIN CREDENTIALS</div>
         <div style={{ fontFamily: 'monospace', fontSize: '13px', color: '#fff', lineHeight: 1.8 }}>
-          <div>Email: <span style={{ color: '#3ECF8E' }}>admin@clinic.lifodial.com</span></div>
+          <div>Email: <span style={{ color: '#3ECF8E' }}>admin@clinic.vox-ai.com</span></div>
           <div>Password: <span style={{ color: '#3ECF8E' }}>{password}</span></div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '10px' }}>

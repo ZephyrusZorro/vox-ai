@@ -171,7 +171,7 @@ function MessageBubble({ msg, visible }: { msg: Message; visible: boolean }) {
         textAlign: isAI ? 'left' : 'right',
         letterSpacing: '0.01em',
       }}>
-        {isAI ? `Lifodial AI · ${msg.time}` : `Patient · ${msg.time}`}
+        {isAI ? `Vox AI · ${msg.time}` : `Patient · ${msg.time}`}
       </div>
       <div style={{
         backgroundColor: isAI ? '#1A1A1A' : 'rgba(62,207,142,0.08)',
@@ -290,7 +290,7 @@ export function DemoCarousel() {
             margin: '0 0 12px',
             fontFamily: "'Plus Jakarta Sans', sans-serif",
           }}>
-            See Lifodial speak <span style={{ color: T.accent }}>every language</span>
+            See Vox AI speak <span style={{ color: T.accent }}>every language</span>
           </h2>
           <p style={{ fontSize: '16px', color: T.textMuted, margin: 0 }}>
             10 languages. One AI. Zero missed appointments.

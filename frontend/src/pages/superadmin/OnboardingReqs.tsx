@@ -39,7 +39,7 @@ function ApproveModal({ req, onClose, onDone }: { req: OnboardingRequest; onClos
   const handleApprove = async () => {
     setLoading(true);
     try {
-      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+      const token = localStorage.getItem('vox-ai-superadmin-token') || 'vox-ai2026';
       const res = await fetch(`${API_URL}/admin/onboarding-requests/${req.id}/approve`, {
         method: 'PATCH',
         headers: { 'X-SuperAdmin-Token': token }
@@ -50,7 +50,7 @@ function ApproveModal({ req, onClose, onDone }: { req: OnboardingRequest; onClos
       onDone();
     } catch (e) {
       // Optimistic fallback
-      setResult({ status: 'approved', credentials: { email: `admin@${req.clinic_name.toLowerCase().replace(/ /g, '')}.lifodial.com`, password: '••••••••' } });
+      setResult({ status: 'approved', credentials: { email: `admin@${req.clinic_name.toLowerCase().replace(/ /g, '')}.vox-ai.com`, password: '••••••••' } });
       onDone();
     } finally {
       setLoading(false);
@@ -121,7 +121,7 @@ function RejectModal({ req, onClose, onDone }: { req: OnboardingRequest; onClose
     if (!reason.trim()) return;
     setLoading(true);
     try {
-      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+      const token = localStorage.getItem('vox-ai-superadmin-token') || 'vox-ai2026';
       await fetch(`${API_URL}/admin/onboarding-requests/${req.id}/reject`, {
         method: 'PATCH',
         headers: {
@@ -265,7 +265,7 @@ export default function OnboardingReqs() {
 
   const fetchRequests = useCallback(async () => {
     try {
-      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+      const token = localStorage.getItem('vox-ai-superadmin-token') || 'vox-ai2026';
       const res = await fetch(`${API_URL}/admin/onboarding-requests`, {
         headers: { 'X-SuperAdmin-Token': token }
       });

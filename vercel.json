@@ -4,11 +4,11 @@
   "outputDirectory": "frontend/dist",
   "framework": "vite",
   "env": {
-    "VITE_API_URL": "https://lifodial.onrender.com"
+    "VITE_API_URL": "https://vox-ai.onrender.com"
   },
   "build": {
     "env": {
-      "VITE_API_URL": "https://lifodial.onrender.com"
+      "VITE_API_URL": "https://vox-ai.onrender.com"
     }
   },
   "rewrites": [

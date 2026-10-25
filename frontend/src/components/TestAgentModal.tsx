@@ -68,7 +68,7 @@ function formatDuration(secs: number) {
 function buildTranscript(messages: Message[], mode: Mode, agentName: string, duration?: number): string {
   const header = [
     '----------------------------------------',
-    'Lifodial — Agent Test Transcript',
+    'Vox AI — Agent Test Transcript',
     `Agent: ${agentName}`,
     `Date: ${new Date().toISOString().slice(0, 10)}`,
     `Mode: ${mode === 'voice' ? 'Voice Call' : 'Chat'}`,
@@ -278,8 +278,8 @@ function VoiceMode({ agent, agentId: directId, agentName: directName, onClose }:
     const dataArray = new Uint8Array(analyser.frequencyBinCount);
     let smoothLevel = 0;
 
-    const SPEECH_THRESHOLD = 12;   // Min avg amplitude to consider speech
-    const SILENCE_DURATION = 1200; // ms of silence before sending chunk (ISSUE 3)
+    const SPEECH_THRESHOLD = 15;   // Min avg amplitude to consider speech (clean noise floor)
+    const SILENCE_DURATION = 1000; // ms of silence before sending chunk
 
     const checkLevel = () => {
       analyser.getByteFrequencyData(dataArray);
@@ -684,6 +684,9 @@ function VoiceMode({ agent, agentId: directId, agentName: directName, onClose }:
         if (msg.type === 'tts_failed') {
           setCurrentTranscript('');
           addMessage('agent', msg.message || 'Response received', { audioUnavailable: true });
+          if (msg.message) {
+            speakTextFallback(msg.message, detectedLang || 'en-IN');
+          }
         }
         // Backwards-compat: some backends send greeting/turn audio as base64 JSON
         if (msg.type === 'greeting_audio' || msg.type === 'audio') {
@@ -1102,7 +1105,7 @@ export default function TestAgentModal({ agent, agentId: directId, agentName: di
   const agentId = agent?.id || directId;
   const agentName = agent?.name || agent?.agent_name || directName || 'Agent';
   const clinicName = agent?.clinic_name || '';
-  const storageKey = `lifodial-test-tab-${agentId}`;
+  const storageKey = `vox-ai-test-tab-${agentId}`;
   const [mode, setMode] = useState<Mode>(defaultMode || (localStorage.getItem(storageKey) as Mode) || 'chat');
   const [isOpen, setIsOpen] = useState(false);
 

@@ -1,6 +1,6 @@
-# Lifodial - Getting Started (Local Setup)
+# Vox AI - Getting Started (Local Setup)
 
-Follow these commands to get the Lifodial AI Voice Receptionist running locally with minimum setup (SQLite + In-memory store).
+Follow these commands to get the Vox AI Voice Receptionist running locally with minimum setup (SQLite + In-memory store).
 
 ## 1. Setup (Run once)
 ```bash
@@ -31,8 +31,8 @@ npm run dev
 ## 4. Test Full Flow
 1. **Super Admin Access**:
    - URL: `http://localhost:5173/superadmin/login`
-   - Email: `admin@lifodial.com`
-   - Password: `lifodial2026`
+   - Email: `admin@vox-ai.com`
+   - Password: `vox-ai2026`
 2. **Create Test Clinic**:
    - Go to **"All Clinics"**.
    - Click **"Add Clinic"** → Fill form → Submit.
@@ -48,4 +48,4 @@ npm run dev
 1. `cd frontend`
 2. `npm run build`
 3. `vercel --prod`
-4. Deploy to: `lifodial.vercel.app` (or your assigned URL).
+4. Deploy to: `vox-ai.vercel.app` (or your assigned URL).

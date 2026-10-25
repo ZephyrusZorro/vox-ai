@@ -1,5 +1,5 @@
 """
-backend/config.py — Pydantic settings for Lifodial.
+backend/config.py — Pydantic settings for Vox AI.
 All secrets loaded from .env. Never access os.environ directly;
 always import and use `settings` from this module.
 """
@@ -22,7 +22,7 @@ class Settings(BaseSettings):
 
     # ── Database ───────────────────────────────────────────────────────────
     database_url: str = os.getenv("DATABASE_URL", "")
-    postgres_user: str = "lifodial"
+    postgres_user: str = "vox_ai"
     postgres_password: str = "change_this_strong_password"
 
     # ── Redis ──────────────────────────────────────────────────────────────
@@ -81,14 +81,14 @@ class Settings(BaseSettings):
     telegram_chat_id: str = ""
 
     # ── CORS (production — set CORS_ORIGIN on Render) ──────────────────────
-    cors_origin: str = ""  # e.g. https://lifodial.vercel.app
+    cors_origin: str = ""  # e.g. https://vox-ai.vercel.app
 
     # ── Frontend ───────────────────────────────────────────────────────────
     vite_api_url: str = "http://localhost:8001"
     frontend_url: str = "http://localhost:5173"
 
     # ── Security ───────────────────────────────────────────────────────────
-    superadmin_token: str = "lifodial2026"
+    superadmin_token: str = "vox-ai2026"
 
 
 settings = Settings()

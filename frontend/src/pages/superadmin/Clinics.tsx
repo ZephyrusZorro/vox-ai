@@ -31,7 +31,7 @@ function AddClinicModal({ onClose }: { onClose: () => void }) {
     if (Object.keys(e).length) { setErrors(e); return; }
     setLoading(true);
     try {
-      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+      const token = localStorage.getItem('vox-ai-superadmin-token') || 'vox-ai2026';
       const resp = await fetch(`${API_URL}/admin/clinics`, {
         method: 'POST',
         headers: {
@@ -184,7 +184,7 @@ function ClinicDrawer({ clinic, onClose, onDeleted }: { clinic: Clinic; onClose:
     setSuspending(true);
     try {
       const newStatus = clinic.status === 'Suspended' ? true : false;
-      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+      const token = localStorage.getItem('vox-ai-superadmin-token') || 'vox-ai2026';
       await fetch(`${API_URL}/admin/clinics/${clinic.id}/status`, {
         method: 'PATCH',
         headers: {
@@ -279,7 +279,7 @@ function ClinicDrawer({ clinic, onClose, onDeleted }: { clinic: Clinic; onClose:
               if (!window.confirm(`Permanently delete "${clinic.name}" and all its agents? This cannot be undone.`)) return;
               setDeleting(true);
               try {
-                const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+                const token = localStorage.getItem('vox-ai-superadmin-token') || 'vox-ai2026';
                 const res = await fetch(`${API_URL}/admin/clinics/${clinic.id}`, {
                   method: 'DELETE',
                   headers: { 'X-SuperAdmin-Token': token }
@@ -318,7 +318,7 @@ export default function SAClinics() {
 
   // Fetch initial clinics from backend
   useEffect(() => {
-    const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+    const token = localStorage.getItem('vox-ai-superadmin-token') || 'vox-ai2026';
     fetch(`${API_URL}/admin/clinics`, {
       headers: { 'X-SuperAdmin-Token': token }
     })

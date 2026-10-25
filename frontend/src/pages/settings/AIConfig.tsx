@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AI_PROVIDERS } from '../../fixtures/ai-providers';
 import { AlertCircle, CheckCircle2, XCircle, Lock, ChevronDown, Activity, ChevronRight, Save } from 'lucide-react';
 
-const LOCAL_STORAGE_KEY = 'lifodial_ai_config';
+const LOCAL_STORAGE_KEY = 'vox_ai_config';
 
 function SectionHeader({ title, description }: { title: string; description?: string }) {
   return (

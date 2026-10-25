@@ -29,7 +29,7 @@ export default function Integrations() {
     <div className="space-y-6" style={{ paddingBottom: '40px' }}>
       <div className="mb-6">
         <h2 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--text-primary)', margin: 0 }}>Active Integrations</h2>
-        <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '4px' }}>Connect Lifodial to your favorite tools.</p>
+        <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '4px' }}>Connect Vox AI to your favorite tools.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

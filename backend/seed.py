@@ -17,9 +17,9 @@ async def main():
         if not tenant:
             tenant = Tenant(
                 id=tenant_id,
-                clinic_name="Lifodial Demo Clinic",
+                clinic_name="Vox AI Demo Clinic",
                 admin_name="Demo Admin",
-                admin_email="admin@lifodial.com",
+                admin_email="admin@vox-ai.com",
                 admin_password="password123", # Plain text for demo as per previous patterns
                 phone="+919876543210",
                 location="Bangalore, India",
@@ -55,7 +55,7 @@ async def main():
                 id=agent_id,
                 tenant_id=tenant_id,
                 agent_name="Receptionist Maya",
-                greeting="Hello, this is Lifodial Demo Clinic. How can I help you today?",
+                greeting="Hello, this is Vox AI Demo Clinic. How can I help you today?",
                 prompt="You are a professional medical receptionist. You help patients book appointments with Dr. Smith.",
                 provider="gemini",
                 model="gemini-2.5-flash",

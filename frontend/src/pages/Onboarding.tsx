@@ -27,8 +27,8 @@ export default function Onboarding() {
         <div className="text-center">
           <div className="inline-flex items-center mb-6">
             <img 
-              src="/assets/lifodial-logo.png"
-              alt="Lifodial"
+              src="/assets/vox-ai-logo.png"
+              alt="Vox AI"
               className="logo"
               style={{
                 height: '48px',
@@ -38,7 +38,7 @@ export default function Onboarding() {
             />
           </div>
           <h1 style={{ fontSize: '28px', fontWeight: 600, color: 'var(--text-primary)', letterSpacing: '-0.02em', margin: 0 }}>
-            Your account has been set up by the Lifodial team
+            Your account has been set up by the Vox AI team
           </h1>
         </div>
 
@@ -89,7 +89,7 @@ export default function Onboarding() {
                 <div>
                   <h2 className="flex items-center gap-3" style={{ fontSize: '20px', fontWeight: 600, color: 'var(--text-primary)', margin: 0 }}>
                     <Building2 size={20} style={{ color: 'var(--accent)' }} />
-                    Welcome to Lifodial
+                    Welcome to Vox AI
                   </h2>
                   <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginTop: '6px', marginBottom: '20px' }}>
                     Our team has configured your AI voice receptionist. Here are your clinic details.

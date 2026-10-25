@@ -1,5 +1,5 @@
 -- ─────────────────────────────────────────────────────────────────────────────
--- Lifodial Supabase Seed
+-- Vox AI Supabase Seed
 -- Project: citniicxkmazxuosauxy
 -- Apply via antigravity Supabase MCP (or psql session pooler).
 -- Idempotent: ON CONFLICT DO NOTHING on every INSERT.

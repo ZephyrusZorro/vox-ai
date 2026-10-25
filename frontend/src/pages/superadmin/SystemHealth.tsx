@@ -87,7 +87,7 @@ export default function SASystemHealth() {
   const fetchHealth = useCallback(async () => {
     setLoading(true);
     try {
-      const token = localStorage.getItem('lifodial-superadmin-token') || 'lifodial2026';
+      const token = localStorage.getItem('vox-ai-superadmin-token') || 'vox-ai2026';
       const res = await fetch(`${API_URL}/admin/health-status`, {
         headers: { 'X-SuperAdmin-Token': token }
       });

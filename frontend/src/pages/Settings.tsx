@@ -460,7 +460,7 @@ function AppearanceTab() {
 
   return (
     <div className="space-y-5">
-      <SectionHeader title="Appearance" description="Customize how Lifodial looks for you." />
+      <SectionHeader title="Appearance" description="Customize how Vox AI looks for you." />
 
       <SettingRow label="Theme" description="Choose between dark and light display">
         <div className="flex items-center gap-3">
@@ -554,7 +554,7 @@ function NotificationsTab() {
               mono
             />
             <p style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
-              Add @lifodial_bot to your channel, then paste the Channel ID above.
+              Add @vox_ai_bot to your channel, then paste the Channel ID above.
             </p>
             <button
               onClick={sendTest}
@@ -595,7 +595,7 @@ function SystemStatusTab() {
     <div className="space-y-5">
       <SectionHeader
         title="System Status"
-        description="MVP acceptance criteria for the Lifodial AI Receptionist."
+        description="MVP acceptance criteria for the Vox AI Receptionist."
       />
 
       {/* Progress summary */}
@@ -717,7 +717,7 @@ export default function Settings() {
           Settings
         </h1>
         <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '2px' }}>
-          Manage your Lifodial AI receptionist configuration
+          Manage your Vox AI receptionist configuration
         </p>
       </div>
 

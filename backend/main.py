@@ -42,7 +42,7 @@ for _uv in ("uvicorn.access", "uvicorn.error", "uvicorn", ""):
 # ── Lifespan (startup / shutdown) ──────────────────────────────────────────────
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
-    logger.info("Lifodial starting up — environment: %s", settings.environment)
+    logger.info("Vox AI starting up — environment: %s", settings.environment)
     
     # Initialize DB — runs safe schema migrations automatically
     # Also registers new models for auto-create
@@ -299,7 +299,7 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     asyncio.ensure_future(_warmup())
 
     yield
-    logger.info("Lifodial shut down cleanly")
+    logger.info("Vox AI shut down cleanly")
 
 
 async def _warmup() -> None:
@@ -346,8 +346,8 @@ async def _warmup() -> None:
 
 # ── App ────────────────────────────────────────────────────────────────────────
 app = FastAPI(
-    title="Lifodial API",
-    description="AI Voice Receptionist SaaS for clinics — India & Middle East (Lifodial)",
+    title="Vox AI API",
+    description="AI Voice Receptionist SaaS for clinics — India & Middle East (Vox AI)",
     version="1.0.4",
     docs_url="/docs",     # temporarily enabled in production for audit
     redoc_url="/redoc",   # temporarily enabled in production for audit
@@ -364,9 +364,9 @@ _CORS_ORIGINS = [
     "http://127.0.0.1:5173",
     "http://127.0.0.1:3000",
     # Production — Vercel frontend
-    "https://lifodial.vercel.app",
+    "https://vox-ai.vercel.app",
     # Production — Render static frontend (if deployed on Render)
-    "https://lifodial-frontend.onrender.com",
+    "https://vox-ai-frontend.onrender.com",
 ]
 # Also pull any extra origin from env (for production deployment)
 _extra = getattr(settings, "cors_origin", None) or getattr(settings, "frontend_url", None)
@@ -444,7 +444,7 @@ async def health() -> dict:
 
 @app.get("/", tags=["meta"])
 async def root() -> dict[str, str]:
-    return {"service": "Lifodial API", "docs": "/docs"}
+    return {"service": "Vox AI API", "docs": "/docs"}
 
 @app.post("/admin/reset-db", tags=["superadmin"], dependencies=[Depends(verify_superadmin_token)])
 async def reset_db():
@@ -618,7 +618,7 @@ async def serve_widget():
 @app.get("/test/", tags=["embed"])
 async def widget_test_page(agent: str = "agent-001"):
     """Public test page for the embed widget. Reachable from any device:
-       https://lifodial.onrender.com/test?agent=agent-001
+       https://vox-ai.onrender.com/test?agent=agent-001
     Defaults to agent-001 (Apollo Clinic Hindi receptionist).
     """
     from fastapi.responses import HTMLResponse
@@ -626,7 +626,7 @@ async def widget_test_page(agent: str = "agent-001"):
 <html lang="en"><head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Lifodial Widget Test — {agent}</title>
+<title>Vox AI Widget Test — {agent}</title>
 <style>
   *{{box-sizing:border-box;margin:0;padding:0}}
   body{{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:linear-gradient(135deg,#f0faf6 0%,#e8f4fd 100%);min-height:100vh;color:#1a1a2e}}
@@ -669,14 +669,14 @@ async def widget_test_page(agent: str = "agent-001"):
       <li>Site must be served over <strong>HTTPS</strong> (browsers block mic on plain HTTP).</li>
       <li>Paste this single line before <code>&lt;/body&gt;</code>:</li>
     </ol>
-    <pre style="background:#1a1a1a;color:#3ECF8E;padding:12px;border-radius:6px;overflow:auto;font-size:11px;margin-top:8px">&lt;script src="https://lifodial.onrender.com/widget.js" data-agent-id="{agent}"&gt;&lt;/script&gt;</pre>
+    <pre style="background:#1a1a1a;color:#3ECF8E;padding:12px;border-radius:6px;overflow:auto;font-size:11px;margin-top:8px">&lt;script src="https://vox-ai.onrender.com/widget.js" data-agent-id="{agent}"&gt;&lt;/script&gt;</pre>
   </div>
 
   <!-- The actual embed -->
   <script
     src="/widget.js"
     data-agent-id="{agent}"
-    data-api-url="https://lifodial.onrender.com"
+    data-api-url="https://vox-ai.onrender.com"
     data-position="bottom-right"
     data-theme="dark"
     data-style="full"

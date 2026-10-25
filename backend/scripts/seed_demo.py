@@ -1,5 +1,5 @@
 """
-Run this after deleting lifodial.db to populate
+Run this after deleting vox-ai.db to populate
 test data for development.
 python -m backend.scripts.seed_demo
 """
@@ -18,7 +18,7 @@ DEMO_CLINICS = [
         "language": "hi-IN",
         "location": "Mumbai, Maharashtra",
         "admin_name": "Dr. Rajesh Sharma",
-        "admin_email": "admin@apollo.lifodial.com",
+        "admin_email": "admin@apollo.vox-ai.com",
         "admin_password": "changeme123",
         "ai_number": "+91 90001 23456",
         "credits": 500.0,
@@ -51,7 +51,7 @@ DEMO_CLINICS = [
         "language": "ml-IN",
         "location": "Kochi, Kerala",
         "admin_name": "Dr. Meena Thomas",
-        "admin_email": "admin@aster.lifodial.com",
+        "admin_email": "admin@aster.vox-ai.com",
         "admin_password": "changeme123",
         "ai_number": "+91 90001 34567",
         "credits": 750.0,
@@ -83,7 +83,7 @@ DEMO_CLINICS = [
         "language": "hi-IN",
         "location": "New Delhi",
         "admin_name": "Dr. Amit Gupta",
-        "admin_email": "admin@max.lifodial.com",
+        "admin_email": "admin@max.vox-ai.com",
         "admin_password": "changeme123",
         "ai_number": "+91 90001 45678",
         "credits": 1000.0,
@@ -116,7 +116,7 @@ DEMO_CLINICS = [
         "language": "kn-IN",
         "location": "Bangalore, Karnataka",
         "admin_name": "Dr. Kiran Rao",
-        "admin_email": "admin@manipal.lifodial.com",
+        "admin_email": "admin@manipal.vox-ai.com",
         "admin_password": "changeme123",
         "ai_number": "+91 90001 56789",
         "credits": 250.0,
@@ -148,7 +148,7 @@ DEMO_CLINICS = [
         "language": "ar-SA",
         "location": "Dubai, UAE",
         "admin_name": "Dr. Ahmed Al Rashidi",
-        "admin_email": "admin@alzahra.lifodial.com",
+        "admin_email": "admin@alzahra.vox-ai.com",
         "admin_password": "changeme123",
         "ai_number": "+971 50001 12345",
         "credits": 2000.0,

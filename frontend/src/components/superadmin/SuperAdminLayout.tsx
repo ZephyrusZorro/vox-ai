@@ -62,11 +62,11 @@ export default function SuperAdminLayout() {
   const crumbs = useBreadcrumbs();
 
   const handleLogout = () => {
-    localStorage.removeItem('lifodial-authed');
-    localStorage.removeItem('lifodial-superadmin');
-    localStorage.removeItem('lifodial-tenant-id');
-    localStorage.removeItem('lifodial-email');
-    localStorage.removeItem('lifodial-clinic-name');
+    localStorage.removeItem('vox-ai-authed');
+    localStorage.removeItem('vox-ai-superadmin');
+    localStorage.removeItem('vox-ai-tenant-id');
+    localStorage.removeItem('vox-ai-email');
+    localStorage.removeItem('vox-ai-clinic-name');
     navigate('/');
   };
 
@@ -95,7 +95,7 @@ export default function SuperAdminLayout() {
         }}>
           {!collapsed && (
             <div>
-              <div style={{ fontSize: '14px', fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>Lifodial</div>
+              <div style={{ fontSize: '14px', fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>Vox AI</div>
               <div style={{ fontSize: '9px', fontWeight: 700, color: '#ef4444', background: '#ef444410', border: '1px solid #ef444430', borderRadius: '4px', padding: '1px 6px', display: 'inline-block', letterSpacing: '0.05em', marginTop: '2px' }}>
                 SUPER ADMIN
               </div>

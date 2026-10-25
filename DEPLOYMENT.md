@@ -1,4 +1,4 @@
-# Lifodial — Deployment Guide
+# Vox AI — Deployment Guide
 
 ## Local Development
 
@@ -49,8 +49,8 @@ cp .env.example .env
 Set these at minimum:
 | Variable | Example |
 |---|---|
-| `DATABASE_URL` | `postgresql+asyncpg://user:pass@postgres/lifodial` |
-| `POSTGRES_USER` | `lifodial` |
+| `DATABASE_URL` | `postgresql+asyncpg://user:pass@postgres/vox_ai` |
+| `POSTGRES_USER` | `ox_ai` |
 | `POSTGRES_PASSWORD` | `<strong-password>` |
 | `GEMINI_API_KEY` | `AIza...` |
 | `SARVAM_API_KEY` | `...` |
@@ -95,8 +95,8 @@ curl -fsSL https://get.docker.com | sh
 sudo usermod -aG docker $USER
 
 # 2. Clone repo
-git clone <your-repo-url> /opt/lifodial
-cd /opt/lifodial
+git clone <your-repo-url> /opt/vox-ai
+cd /opt/vox-ai
 
 # 3. Configure
 cp .env.example .env

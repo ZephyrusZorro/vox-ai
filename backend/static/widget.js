@@ -1,8 +1,8 @@
 /**
- * Lifodial AI Receptionist Widget v2.0
+ * Vox AI Receptionist Widget v2.0
  * Usage:
  *   <!-- Default (chat + call button row) -->
- *   <script src="https://api.lifodial.com/widget.js"
+ *   <script src="https://api.vox-ai.com/widget.js"
  *           data-agent-id="YOUR-AGENT-UUID"
  *           data-position="bottom-right"
  *           data-theme="dark"
@@ -39,7 +39,7 @@
   const _explicit = script.getAttribute('data-api-url');
   const _scriptSrc = script.src || '';
   const _scriptOrigin = _scriptSrc
-    ? new URL(_scriptSrc).origin          // e.g. https://api.lifodial.com
+    ? new URL(_scriptSrc).origin          // e.g. https://api.vox-ai.com
     : window.location.origin;             // same-origin dev fallback
   const API_BASE  = _explicit !== null && _explicit !== '' ? _explicit : _scriptOrigin;
   const WS_BASE   = API_BASE.replace(/^http/, 'ws');
@@ -51,7 +51,7 @@
   const ICON_BG_OVERRIDE  = script.getAttribute('data-icon-bg');
   const ICON_CLR_OVERRIDE = script.getAttribute('data-icon-color');
 
-  if (!AGENT_ID) { console.warn('[Lifodial] data-agent-id is required'); return; }
+  if (!AGENT_ID) { console.warn('[Vox AI] data-agent-id is required'); return; }
 
   // ── State ──────────────────────────────────────────────────────────────────
   let config    = null;
@@ -92,13 +92,13 @@
       const res = await fetch(API_BASE + '/embed/' + AGENT_ID + '/config');
       if (!res.ok) {
         const errText = await res.text().catch(() => '');
-        console.error('[Lifodial] Config load failed: HTTP ' + res.status + ' from ' + API_BASE + '/embed/' + AGENT_ID + '/config', errText);
+        console.error('[Vox AI] Config load failed: HTTP ' + res.status + ' from ' + API_BASE + '/embed/' + AGENT_ID + '/config', errText);
         injectErrorBadge('Receptionist unavailable (HTTP ' + res.status + ')');
         return;
       }
       config = await res.json();
       if (config.is_active === false) {
-        console.warn('[Lifodial] Agent ' + AGENT_ID + ' is not active');
+        console.warn('[Vox AI] Agent ' + AGENT_ID + ' is not active');
         return;
       }
       injectWidget();
@@ -106,7 +106,7 @@
       // If call-only: open mic automatically after 400ms (give DOM time to render)
       if (STYLE === 'call-only') setTimeout(() => startVoiceCall(), 400);
     } catch (err) {
-      console.error('[Lifodial] Config fetch error — is API_BASE reachable?', API_BASE, err);
+      console.error('[Vox AI] Config fetch error — is API_BASE reachable?', API_BASE, err);
       injectErrorBadge('Receptionist offline (network)');
     }
   }
@@ -148,7 +148,7 @@
 
   // ── CSS injection ──────────────────────────────────────────────────────────
   function injectStyles() {
-    if (document.getElementById('lifodial-styles')) return;
+    if (document.getElementById('vox-ai-styles')) return;
     const C      = getColors();
     const isR    = POSITION.includes('right');
     const isB    = POSITION.includes('bottom');
@@ -300,7 +300,7 @@
       }
     `;
     const el = document.createElement('style');
-    el.id = 'lifodial-styles';
+    el.id = 'vox-ai-styles';
     el.textContent = css;
     document.head.appendChild(el);
   }
@@ -400,7 +400,7 @@
         </div>
       </div>
 
-      <div id="lfd-footer">Powered by <a href="https://lifodial.com" target="_blank">Lifodial AI</a></div>
+      <div id="lfd-footer">Powered by <a href="https://vox-ai.com" target="_blank">Vox AI</a></div>
     `;
 
     document.body.appendChild(panel);
@@ -593,7 +593,7 @@
     try {
       stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
       globalStream = stream;
-      console.log('[Lifodial] mic granted in', Math.round(performance.now() - t0), 'ms');
+      console.log('[Vox AI] mic granted in', Math.round(performance.now() - t0), 'ms');
     } catch (err) {
       setCallStatus('⚠️ Microphone access denied. Please allow mic access and try again.');
       return;
@@ -666,11 +666,11 @@
             // be heard back, and the WS sits idle until the client gives up
             // and disconnects.
             if (!mediaRecorder && stream && stream.active) {
-              try { startRecording(stream); } catch (e) { console.error('[Lifodial] startRecording failed:', e); }
+              try { startRecording(stream); } catch (e) { console.error('[Vox AI] startRecording failed:', e); }
             }
           };
         } catch (e) {
-          console.warn('[Lifodial] audio decode/play failed:', e);
+          console.warn('[Vox AI] audio decode/play failed:', e);
           setCallStatus('🎙 Listening… speak now');
           if (!mediaRecorder && stream && stream.active) {
             try { startRecording(stream); } catch (_) {}
