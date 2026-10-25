@@ -148,22 +148,8 @@ function Navbar() {
             padding: '0 24px',
           }}
         >
-          {/* Brand */}
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-            <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
-              <img 
-                src="/assets/vox-ai-logo.png"
-                alt="Vox AI"
-                className="logo-navbar"
-                style={{
-                  height: '36px',
-                  width: 'auto',
-                  filter: 'brightness(1.1) contrast(1.05)',
-                  display: 'block',
-                }}
-              />
-            </Link>
-          </div>
+          {/* Brand - blank as requested */}
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }} />
 
           {/* Center nav (desktop) */}
           <div

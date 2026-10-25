@@ -91,16 +91,7 @@ export default function Layout() {
           className="px-4 py-4 flex items-center justify-between"
           style={{ borderBottom: '1px solid var(--border)' }}
         >
-          <div className="sidebar-logo">
-            <img
-              src="/assets/vox-ai-logo.png"
-              alt="Vox AI"
-              style={{
-                height: '28px',
-                width: 'auto',
-                mixBlendMode: 'lighten',
-              }}
-            />
+          <div className="sidebar-logo" style={{ minHeight: '28px' }}>
           </div>
           {/* Close button only on mobile */}
           <button
@@ -223,11 +214,7 @@ export default function Layout() {
           >
             <Menu size={20} />
           </button>
-          <img
-            src="/assets/vox-ai-logo.png"
-            alt="Vox AI"
-            style={{ height: '24px', width: 'auto', mixBlendMode: 'lighten' }}
-          />
+          <div style={{ height: '24px' }} />
           <div style={{ width: '36px' }} /> {/* spacer */}
         </header>
 
